@@ -1,50 +1,86 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Análisis Cognitivo Conductual - Caso Clínico</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&amp;family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
-        body {
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Análisis Cognitivo Conductual - Presentación Completa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        * {
             margin: 0;
             padding: 0;
-            width: 1280px;
-            height: 720px;
-            overflow: hidden;
-            background-color: #f0f4f8; /* Light blue-grey background */
-            font-family: 'Lato', sans-serif;
-            color: #334155;
+            box-sizing: border-box;
         }
-        .slide-container {
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #0f172a;
+            overflow: hidden;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .presentation-container {
             width: 1280px;
             height: 720px;
             position: relative;
+            background: #f0f4f8;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
         }
-        .header-stripe {
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.95) translateX(50px);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translateX(0);
+        }
+
+        .slide.prev {
+            transform: scale(0.95) translateX(-50px);
+        }
+
+        /* Estilos Slide 1 - Portada */
+        .slide-1 .slide-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .slide-1 .header-stripe {
             height: 12px;
-            background-color: #0f766e; /* Teal-700 */
+            background-color: #0f766e;
             width: 100%;
         }
-        .main-content {
+        .slide-1 .main-content {
             flex: 1;
             display: flex;
             padding: 40px 60px;
             gap: 40px;
             align-items: center;
         }
-        .left-panel {
+        .slide-1 .left-panel {
             flex: 0 0 45%;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        .right-panel {
+        .slide-1 .right-panel {
             flex: 1;
             background-color: white;
             border-radius: 12px;
@@ -54,9 +90,9 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            border-left: 6px solid #0d9488; /* Teal-600 */
+            border-left: 6px solid #0d9488;
         }
-        h1 {
+        .slide-1 h1 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             font-size: 48px;
@@ -64,14 +100,14 @@
             color: #1e293b;
             margin-bottom: 16px;
         }
-        h2 {
+        .slide-1 h2 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 400;
             font-size: 24px;
             color: #64748b;
             margin-bottom: 40px;
         }
-        .tag {
+        .slide-1 .tag {
             display: inline-block;
             padding: 6px 12px;
             background-color: #e0f2f1;
@@ -80,23 +116,24 @@
             font-weight: 600;
             font-size: 14px;
             margin-bottom: 20px;
+            width: fit-content;
         }
-        .profile-section {
+        .slide-1 .profile-section {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-        .info-row {
+        .slide-1 .info-row {
             display: flex;
             align-items: flex-start;
             gap: 15px;
             padding-bottom: 15px;
             border-bottom: 1px solid #e2e8f0;
         }
-        .info-row:last-child {
+        .slide-1 .info-row:last-child {
             border-bottom: none;
         }
-        .icon-box {
+        .slide-1 .icon-box {
             width: 40px;
             height: 40px;
             background-color: #f1f5f9;
@@ -107,19 +144,132 @@
             color: #0f766e;
             flex-shrink: 0;
         }
-        .info-content h3 {
+        .slide-1 .info-content h3 {
             font-family: 'Montserrat', sans-serif;
             font-size: 16px;
             font-weight: 700;
             margin: 0 0 4px 0;
             color: #334155;
         }
-        .info-content p {
+        .slide-1 .info-content p {
             font-size: 14px;
             line-height: 1.5;
             margin: 0;
             color: #475569;
         }
+
+        /* Estilos Slide 2 - Análisis Funcional */
+        .slide-2 .slide-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .slide-2 .header-stripe {
+            height: 12px;
+            background-color: #0f766e;
+            width: 100%;
+        }
+        .slide-2 .header-content {
+            padding: 30px 60px 10px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .slide-2 h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: #1e293b;
+            margin: 0;
+        }
+        .slide-2 h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: #64748b;
+            margin: 5px 0 0 0;
+        }
+        .slide-2 .main-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            gap: 25px;
+            padding: 20px 60px 40px 60px;
+            height: 100%;
+        }
+        .slide-2 .column-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 100%;
+            border-top: 5px solid transparent;
+        }
+        .slide-2 .col-a { border-top-color: #3b82f6; }
+        .slide-2 .col-b { border-top-color: #ef4444; }
+        .slide-2 .col-c { border-top-color: #10b981; }
+        .slide-2 .col-header {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .slide-2 .col-header h3 {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .slide-2 .col-a .col-header { background-color: #eff6ff; color: #1d4ed8; }
+        .slide-2 .col-b .col-header { background-color: #fef2f2; color: #b91c1c; }
+        .slide-2 .col-c .col-header { background-color: #ecfdf5; color: #047857; }
+        .slide-2 .col-content {
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .slide-2 .list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .slide-2 .list-item i {
+            margin-top: 3px;
+            font-size: 10px;
+        }
+        .slide-2 .section-box {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 12px;
+            border-left: 3px solid #cbd5e1;
+        }
+        .slide-2 .section-title {
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .slide-2 .behavior-group {
+            margin-bottom: 12px;
+        }
+
+        /* Footer común */
         .footer {
             height: 50px;
             padding: 0 60px;
@@ -131,194 +281,369 @@
             background-color: white;
             border-top: 1px solid #e2e8f0;
         }
+
+        /* Controles de navegación */
+        .nav-controls {
+            position: absolute;
+            bottom: 70px;
+            right: 60px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+        .nav-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            background: #0f766e;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+        .nav-btn:hover {
+            background: #0d9488;
+            transform: scale(1.1);
+        }
+        .nav-btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .nav-btn i {
+            font-size: 18px;
+        }
+
+        /* Indicadores de slide */
+        .slide-indicators {
+            position: absolute;
+            bottom: 80px;
+            left: 60px;
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .indicator.active {
+            background: #0f766e;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        /* Contador de slides */
+        .slide-counter {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 118, 110, 0.1);
+            color: #0f766e;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 100;
+        }
+
+        /* Responsive */
+        @media (max-width: 1320px) {
+            .presentation-container {
+                transform: scale(0.7);
+            }
+        }
+        @media (max-width: 900px) {
+            .presentation-container {
+                transform: scale(0.5);
+            }
+        }
     </style>
 </head>
 <body>
-<div class="slide-container">
-<div class="header-stripe"></div>
-<div class="main-content">
-<div class="left-panel">
-<div class="tag">PSICOLOGÍA CLÍNICA</div>
-<h1>Análisis Cognitivo Conductual</h1>
-<h2>Estudio de Caso: Trastorno de Ansiedad y Evitación</h2>
-<div style="margin-top: 40px; display: flex; align-items: center; gap: 15px;">
-<div style="width: 50px; height: 50px; border-radius: 50%; background-color: #cbd5e1; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #475569;">
-<i class="fas fa-user-md fa-lg"></i>
-</div>
-<div>
-<p style="margin: 0; font-weight: 700; color: #334155;">Presentación Clínica</p>
-<p style="margin: 0; font-size: 14px; color: #64748b;">Marzo 2026</p>
-</div>
-</div>
-</div>
-<div class="right-panel">
-<div style="margin-bottom: 20px;">
-<p style="font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0f766e; margin: 0;">Perfil del Paciente: Sebastián</p>
-</div>
-<div class="profile-section">
-<div class="info-row">
-<div class="icon-box"><i class="fas fa-id-card"></i></div>
-<div class="info-content">
-<h3>Datos Sociodemográficos</h3>
-<p>24 años. Universitario (Administración de Empresas). Proviene de núcleo adinerado; padre empresario y madre ama de casa con perfil sobreprotector.</p>
-</div>
-</div>
-<div class="info-row">
-<div class="icon-box"><i class="fas fa-exclamation-circle"></i></div>
-<div class="info-content">
-<h3>Motivo de Consulta</h3>
-<p>Ansiedad intensa ante la posibilidad de detención policial por consumo de marihuana. Evitación de conducción nocturna, hipervigilancia ante patrulleros y restricción de autonomía.</p>
-</div>
-</div>
-<div class="info-row">
-<div class="icon-box"><i class="fas fa-cannabis"></i></div>
-<div class="info-content">
-<h3>Historial de Consumo</h3>
-<p>Tiempo de consumo: 3 años. Frecuencia actual: 3-4 veces/semana (contextos sociales/casa). Sin antecedentes legales reales.</p>
-</div>
-</div>
-<div class="info-row">
-<div class="icon-box"><i class="fas fa-history"></i></div>
-<div class="info-content">
-<h3>Antecedentes Relevantes</h3>
-<p>Sesgo interpretativo de amenaza inminente. La evitación se mantiene a pesar de no consumir en el momento de la conducción.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="footer">
-<p>Confidencial - Uso Académico y Clínico</p>
-<p>Página 1 de 7</p>
-</div>
+
+<div class="presentation-container">
+    
+    <!-- SLIDE 1: Portada -->
+    <div class="slide slide-1 active" data-slide="1">
+        <div class="slide-container">
+            <div class="header-stripe"></div>
+            <div class="main-content">
+                <div class="left-panel">
+                    <div class="tag">PSICOLOGÍA CLÍNICA</div>
+                    <h1>Análisis Cognitivo Conductual</h1>
+                    <h2>Estudio de Caso: Trastorno de Ansiedad y Evitación</h2>
+                    <div style="margin-top: 40px; display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background-color: #cbd5e1; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #475569;">
+                            <i class="fas fa-user-md fa-lg"></i>
+                        </div>
+                        <div>
+                            <p style="margin: 0; font-weight: 700; color: #334155;">Presentación Clínica</p>
+                            <p style="margin: 0; font-size: 14px; color: #64748b;">Marzo 2026</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-panel">
+                    <div style="margin-bottom: 20px;">
+                        <p style="font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0f766e; margin: 0;">Perfil del Paciente: Sebastián</p>
+                    </div>
+                    <div class="profile-section">
+                        <div class="info-row">
+                            <div class="icon-box"><i class="fas fa-id-card"></i></div>
+                            <div class="info-content">
+                                <h3>Datos Sociodemográficos</h3>
+                                <p>24 años. Universitario (Administración de Empresas). Proviene de núcleo adinerado; padre empresario y madre ama de casa con perfil sobreprotector.</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="icon-box"><i class="fas fa-exclamation-circle"></i></div>
+                            <div class="info-content">
+                                <h3>Motivo de Consulta</h3>
+                                <p>Ansiedad intensa ante la posibilidad de detención policial por consumo de marihuana. Evitación de conducción nocturna, hipervigilancia ante patrulleros y restricción de autonomía.</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="icon-box"><i class="fas fa-cannabis"></i></div>
+                            <div class="info-content">
+                                <h3>Historial de Consumo</h3>
+                                <p>Tiempo de consumo: 3 años. Frecuencia actual: 3-4 veces/semana (contextos sociales/casa). Sin antecedentes legales reales.</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="icon-box"><i class="fas fa-history"></i></div>
+                            <div class="info-content">
+                                <h3>Antecedentes Relevantes</h3>
+                                <p>Sesgo interpretativo de amenaza inminente. La evitación se mantiene a pesar de no consumir en el momento de la conducción.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <p>Confidencial - Uso Académico y Clínico</p>
+                <p>Página 1 de 2</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: Análisis Funcional -->
+    <div class="slide slide-2" data-slide="2">
+        <div class="slide-container">
+            <div class="header-stripe"></div>
+            <div class="header-content">
+                <div>
+                    <h1>Análisis Funcional</h1>
+                    <h2>Modelo A-C-C: Mecanismos de mantenimiento de la ansiedad</h2>
+                </div>
+                <div style="background-color: #e0f2f1; color: #0f766e; padding: 5px 15px; border-radius: 20px; font-weight: 600; font-size: 14px;">
+                    <i class="fas fa-project-diagram"></i> Mapa Conductual
+                </div>
+            </div>
+            <div class="main-grid">
+                <!-- Columna A: Antecedentes -->
+                <div class="column-card col-a">
+                    <div class="col-header">
+                        <i class="fas fa-bolt"></i>
+                        <h3>A. Antecedentes</h3>
+                    </div>
+                    <div class="col-content">
+                        <p style="font-size: 13px; color: #64748b; font-style: italic; margin-bottom: 15px;">Situaciones disparadoras (externas/internas)</p>
+                        <div class="list-item">
+                            <i class="fas fa-circle text-blue-500"></i>
+                            <p>Ver un patrullero en la calle mientras conduce.</p>
+                        </div>
+                        <div class="list-item">
+                            <i class="fas fa-circle text-blue-500"></i>
+                            <p>Salir de noche después de haber consumido.</p>
+                        </div>
+                        <div class="list-item">
+                            <i class="fas fa-circle text-blue-500"></i>
+                            <p>Escuchar sirenas de policía a la distancia.</p>
+                        </div>
+                        <div class="list-item">
+                            <i class="fas fa-circle text-blue-500"></i>
+                            <p>Reuniones sociales con consumo + presencia de desconocidos.</p>
+                        </div>
+                        <div class="list-item">
+                            <i class="fas fa-circle text-blue-500"></i>
+                            <p>Exposición a noticias sobre operativos policiales.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Columna B: Conducta -->
+                <div class="column-card col-b">
+                    <div class="col-header">
+                        <i class="fas fa-user-cog"></i>
+                        <h3>B. Respuestas (Conducta)</h3>
+                    </div>
+                    <div class="col-content">
+                        <div class="behavior-group">
+                            <div class="section-title">
+                                <i class="fas fa-brain text-purple-500"></i> Cognitivas
+                            </div>
+                            <div class="list-item">
+                                <p>Rumiación catastrófica ("me van a ver culpable"). Monitoreo mental constante del entorno.</p>
+                            </div>
+                        </div>
+                        <div class="behavior-group">
+                            <div class="section-title">
+                                <i class="fas fa-heart-broken text-red-500"></i> Emocionales
+                            </div>
+                            <div class="list-item">
+                                <p>Ansiedad intensa (pánico), vergüenza anticipatoria, culpa post-consumo.</p>
+                            </div>
+                        </div>
+                        <div class="behavior-group">
+                            <div class="section-title">
+                                <i class="fas fa-running text-orange-500"></i> Conductuales
+                            </div>
+                            <div class="list-item">
+                                <p>Evitación de manejo nocturno. Cambio de rutas. Chequeo compulsivo de espejos. Cancelación de planes.</p>
+                            </div>
+                        </div>
+                        <div class="behavior-group">
+                            <div class="section-title">
+                                <i class="fas fa-bolt text-yellow-500"></i> Fisiológicas
+                            </div>
+                            <div class="list-item">
+                                <p>Taquicardia, tensión muscular, hiperventilación, insomnio pre-salida.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Columna C: Consecuencias -->
+                <div class="column-card col-c">
+                    <div class="col-header">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>C. Consecuencias</h3>
+                    </div>
+                    <div class="col-content">
+                        <div class="section-box" style="border-left-color: #34d399; margin-bottom: 15px;">
+                            <div class="section-title" style="color: #059669;">
+                                <i class="fas fa-hourglass-start"></i> Corto Plazo
+                            </div>
+                            <div class="list-item">
+                                <i class="fas fa-check text-green-600"></i>
+                                <p><strong>Alivio inmediato de la ansiedad</strong> gracias a la evitación.</p>
+                            </div>
+                            <div class="list-item">
+                                <i class="fas fa-check text-green-600"></i>
+                                <p>Refuerzo Negativo: "Me salvé porque no fui".</p>
+                            </div>
+                        </div>
+                        <div class="section-box" style="border-left-color: #ef4444; background-color: #fff1f2;">
+                            <div class="section-title" style="color: #b91c1c;">
+                                <i class="fas fa-hourglass-end"></i> Largo Plazo
+                            </div>
+                            <div class="list-item">
+                                <i class="fas fa-exclamation-triangle text-red-600"></i>
+                                <p><strong>Mantenimiento del ciclo:</strong> Nunca desconfirma la amenaza.</p>
+                            </div>
+                            <div class="list-item">
+                                <i class="fas fa-exclamation-triangle text-red-600"></i>
+                                <p>Aislamiento social progresivo y pérdida de autonomía.</p>
+                            </div>
+                            <div class="list-item">
+                                <i class="fas fa-exclamation-triangle text-red-600"></i>
+                                <p>Incremento paradójico de ansiedad ante estímulos neutros.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <p>Confidencial - Uso Académico y Clínico</p>
+                <p>Página 2 de 2</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controles de Navegación -->
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Indicadores -->
+    <div class="slide-indicators">
+        <div class="indicator active" onclick="goToSlide(1)"></div>
+        <div class="indicator" onclick="goToSlide(2)"></div>
+    </div>
+
+    <!-- Contador -->
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">2</span>
+    </div>
+
 </div>
 
-<div class="slide-container2">
-<div class="header-stripe2"></div>
-<div class="header-content2">
-<div>
-<h1>Análisis Funcional</h1>
-<h2>Modelo A-C-C: Mecanismos de mantenimiento de la ansiedad</h2>
-</div>
-<div style="background-color: #e0f2f1; color: #0f766e; padding: 5px 15px; border-radius: 20px; font-weight: 600; font-size: 14px;">
-<i class="fas fa-project-diagram"></i> Mapa Conductual
-        </div>
-</div>
-<div class="main-grid">
-<!-- Columna A: Antecedentes -->
-<div class="column-card col-a">
-<div class="col-header">
-<i class="fas fa-bolt"></i>
-<h3>A. Antecedentes</h3>
-</div>
-<div class="col-content">
-<p style="font-size: 13px; color: #64748b; font-style: italic; margin-bottom: 15px;">Situaciones disparadoras (externas/internas)</p>
-<div class="list-item">
-<i class="fas fa-circle text-blue-500"></i>
-<p>Ver un patrullero en la calle mientras conduce.</p>
-</div>
-<div class="list-item">
-<i class="fas fa-circle text-blue-500"></i>
-<p>Salir de noche después de haber consumido.</p>
-</div>
-<div class="list-item">
-<i class="fas fa-circle text-blue-500"></i>
-<p>Escuchar sirenas de policía a la distancia.</p>
-</div>
-<div class="list-item">
-<i class="fas fa-circle text-blue-500"></i>
-<p>Reuniones sociales con consumo + presencia de desconocidos.</p>
-</div>
-<div class="list-item">
-<i class="fas fa-circle text-blue-500"></i>
-<p>Exposición a noticias sobre operativos policiales.</p>
-</div>
-</div>
-</div>
-<!-- Columna B: Conducta -->
-<div class="column-card col-b">
-<div class="col-header">
-<i class="fas fa-user-cog"></i>
-<h3>B. Respuestas (Conducta)</h3>
-</div>
-<div class="col-content">
-<div class="behavior-group">
-<div class="section-title">
-<i class="fas fa-brain text-purple-500"></i> Cognitivas
-                    </div>
-<div class="list-item">
-<p>Rumiación catastrófica ("me van a ver culpable"). Monitoreo mental constante del entorno.</p>
-</div>
-</div>
-<div class="behavior-group">
-<div class="section-title">
-<i class="fas fa-heart-broken text-red-500"></i> Emocionales
-                    </div>
-<div class="list-item">
-<p>Ansiedad intensa (pánico), vergüenza anticipatoria, culpa post-consumo.</p>
-</div>
-</div>
-<div class="behavior-group">
-<div class="section-title">
-<i class="fas fa-running text-orange-500"></i> Conductuales
-                    </div>
-<div class="list-item">
-<p>Evitación de manejo nocturno. Cambio de rutas. Chequeo compulsivo de espejos. Cancelación de planes.</p>
-</div>
-</div>
-<div class="behavior-group">
-<div class="section-title">
-<i class="fas fa-bolt text-yellow-500"></i> Fisiológicas
-                    </div>
-<div class="list-item">
-<p>Taquicardia, tensión muscular, hiperventilación, insomnio pre-salida.</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Columna C: Consecuencias -->
-<div class="column-card col-c">
-<div class="col-header">
-<i class="fas fa-sync-alt"></i>
-<h3>C. Consecuencias</h3>
-</div>
-<div class="col-content">
-<div class="section-box" style="border-left-color: #34d399; margin-bottom: 15px;">
-<div class="section-title" style="color: #059669;">
-<i class="fas fa-hourglass-start"></i> Corto Plazo
-                    </div>
-<div class="list-item">
-<i class="fas fa-check text-green-600"></i>
-<p><strong>Alivio inmediato de la ansiedad</strong> gracias a la evitación.</p>
-</div>
-<div class="list-item">
-<i class="fas fa-check text-green-600"></i>
-<p>Refuerzo Negativo: "Me salvé porque no fui".</p>
-</div>
-</div>
-<div class="section-box" style="border-left-color: #ef4444; background-color: #fff1f2;">
-<div class="section-title" style="color: #b91c1c;">
-<i class="fas fa-hourglass-end"></i> Largo Plazo
-                    </div>
-<div class="list-item">
-<i class="fas fa-exclamation-triangle text-red-600"></i>
-<p><strong>Mantenimiento del ciclo:</strong> Nunca desconfirma la amenaza.</p>
-</div>
-<div class="list-item">
-<i class="fas fa-exclamation-triangle text-red-600"></i>
-<p>Aislamiento social progresivo y pérdida de autonomía.</p>
-</div>
-<div class="list-item">
-<i class="fas fa-exclamation-triangle text-red-600"></i>
-<p>Incremento paradójico de ansiedad ante estímulos neutros.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="footer">
-<p>Página 2 de 7</p>
-</div>
-</div>
+<script>
+    let currentSlide = 1;
+    const totalSlides = 2;
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.indicator');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const currentSlideSpan = document.getElementById('currentSlide');
+
+    function updateSlide() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'prev');
+            if (index + 1 === currentSlide) {
+                slide.classList.add('active');
+            } else if (index + 1 < currentSlide) {
+                slide.classList.add('prev');
+            }
+        });
+
+        indicators.forEach((ind, index) => {
+            ind.classList.toggle('active', index + 1 === currentSlide);
+        });
+
+        currentSlideSpan.textContent = currentSlide;
+        prevBtn.disabled = currentSlide === 1;
+        nextBtn.disabled = currentSlide === totalSlides;
+    }
+
+    function changeSlide(direction) {
+        const newSlide = currentSlide + direction;
+        if (newSlide >= 1 && newSlide <= totalSlides) {
+            currentSlide = newSlide;
+            updateSlide();
+        }
+    }
+
+    function goToSlide(slideNum) {
+        currentSlide = slideNum;
+        updateSlide();
+    }
+
+    // Navegación con teclado
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            changeSlide(1);
+        } else if (e.key === 'ArrowLeft') {
+            changeSlide(-1);
+        }
+    });
+
+    // Inicializar
+    updateSlide();
+</script>
+
 </body>
 </html>
